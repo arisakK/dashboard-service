@@ -1,0 +1,71 @@
+import { ApiProperty } from '@nestjs/swagger'
+import { IsEnum, IsNotEmpty, IsNumber, IsString, Min } from 'class-validator'
+
+import EGenre from '../enum/genre.enum'
+
+export class CreateInBooksStockDto {
+  @ApiProperty({
+    type: String,
+    example: 'name',
+  })
+  @IsString()
+  @IsNotEmpty()
+  title: string
+
+  @ApiProperty({
+    type: String,
+    example: '-',
+  })
+  @IsString()
+  @IsNotEmpty()
+  descr: string
+
+  @ApiProperty({
+    type: String,
+    example: 'author',
+  })
+  @IsString()
+  @IsNotEmpty()
+  author: string
+
+  @ApiProperty({
+    enum: EGenre,
+    example: EGenre.WESTERN,
+  })
+  @IsEnum(EGenre)
+  @IsNotEmpty()
+  genre: EGenre
+
+  @ApiProperty({
+    type: Number,
+    example: 100,
+  })
+  @IsNumber()
+  @IsNotEmpty()
+  price: number
+
+  @ApiProperty({
+    type: String,
+    example: 'publisher',
+  })
+  @IsString()
+  @IsNotEmpty()
+  publisher: string
+
+  @ApiProperty({
+    type: Number,
+    example: 10,
+  })
+  @IsNumber()
+  @IsNotEmpty()
+  @Min(10)
+  quantity: number
+
+  @ApiProperty({
+    type: String,
+    example: '-',
+  })
+  @IsString()
+  @IsNotEmpty()
+  imageUrl: string
+}
